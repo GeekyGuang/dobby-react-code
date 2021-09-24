@@ -19,6 +19,24 @@ const TagsSection = styled.section`
 `
 
 const NotesSection = styled.section`
+  font-size: 14px;
+  background: #f5f5f5;
+  padding: 0 16px;
+  > label {
+    display: flex;
+    align-items: center;
+    > span {
+      margin-right: 16px; white-space: nowrap;
+    }
+    > input {
+    display: block;
+    height: 72px;
+    width: 100%;
+    background: none;
+    border: none;
+  }
+  }
+
 
 `
 
@@ -46,7 +64,7 @@ function Money() {
       <NotesSection>
         <label>
           <span>备注</span>
-          <input type="text"/>
+          <input type="text" placeholder="在这里输入备注"/>
         </label>
       </NotesSection>
       <CategorySection>

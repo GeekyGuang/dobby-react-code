@@ -23,3 +23,6 @@ button {
   height: 1em;
   width: 1em;
 }
+:focus {
+  outline: none;
+}
