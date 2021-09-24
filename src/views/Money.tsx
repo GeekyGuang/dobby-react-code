@@ -3,8 +3,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 const TagsSection = styled.section`
+  flex-grow: 1;
   background: #fff;
   padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
   > ol {
     margin: 0 -12px;
     > li {
@@ -16,7 +21,7 @@ const TagsSection = styled.section`
     background: none;border: none;padding: 2px 4px;
     border-bottom: 1px solid #333;color: #666;margin-top: 8px;
   }
-`
+`;
 
 const NotesSection = styled.section`
   font-size: 14px;
@@ -36,7 +41,7 @@ const NotesSection = styled.section`
     border: none;
   }
   }
-`
+`;
 
 const CategorySection = styled.section`
   background: #c4c4c4;
@@ -60,7 +65,7 @@ const CategorySection = styled.section`
       }
     }
   }
-`
+`;
 
 const NumberPadSection = styled.section`
   > .output {
@@ -114,12 +119,17 @@ const NumberPadSection = styled.section`
         background: #fff;
     }
   }
-`
+`;
+
+const MyLayout = styled(Layout)`
+  display: flex;
+  flex-direction: column;
+`;
 
 
 function Money() {
   return (
-    <Layout>
+    <MyLayout>
       <TagsSection>
         <ol>
           <li>衣</li>
@@ -160,7 +170,7 @@ function Money() {
           <button className="zero">0</button>
         </div>
       </NumberPadSection>
-    </Layout>
+    </MyLayout>
   );
 }
 

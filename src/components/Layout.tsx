@@ -14,13 +14,14 @@ const Main = styled.div`
 `
 
 interface Props {
-  children: React.ReactNode
+  children: React.ReactNode,
+  className?: string
 }
 
 const Layout = (props: Props) => {
   return (
     <Wrapper>
-      <Main>
+      <Main className={props.className}>
         {props.children}
       </Main>
       <Nav />
