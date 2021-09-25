@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import React, {useState} from 'react';
 
-const TagsSection = styled.section`
+const Wrapper = styled.section`
   flex-grow: 1;
   background: #fff;
   padding: 12px 16px;
@@ -13,6 +14,9 @@ const TagsSection = styled.section`
     > li {
       font-size: 14px;display: inline-block;background: #D9D9D9;
       border-radius: 18px;padding: 3px 18px;margin: 8px 12px;
+      &.selected {
+        background: #f60;
+      }
     } 
   }
   > button {
@@ -20,5 +24,36 @@ const TagsSection = styled.section`
     border-bottom: 1px solid #333;color: #666;margin-top: 8px;
   }
 `;
+
+const TagsSection: React.FC = () => {
+  const [tags, setTags] = useState<string[]>(['衣','食', '住', '行'])
+  const [selectedTags, setSelectedTags] = useState<string[]>([])
+  const onCreateTag = () => {
+    const tag = window.prompt('请输入标签名')
+    if(tag !== null) {
+      setTags([...tags, tag])
+    }
+  }
+
+  const onToggleTags = (tag:string) => {
+    const index = selectedTags.indexOf(tag)
+    if (index >= 0) {
+      setSelectedTags(selectedTags.filter(t => t !== tag))
+    } else {
+      setSelectedTags([...selectedTags, tag])
+    }
+  }
+
+  return (
+    <Wrapper>
+      <ol>
+        {tags.map(tag => <li key={tag}
+                             onClick={()=>{onToggleTags(tag)}}
+                             className={selectedTags.indexOf(tag) >= 0 ? 'selected' : ''}>{tag}</li>)}
+      </ol>
+      <button onClick={onCreateTag}>新增标签</button>
+    </Wrapper>
+    )
+}
 
 export {TagsSection}
