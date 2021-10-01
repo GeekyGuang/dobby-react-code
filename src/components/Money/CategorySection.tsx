@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import React from 'react';
 
-const CategorySection = styled.section`
+const Wrapper = styled.section`
   background: #c4c4c4;
   font-size: 24px;
   > ul {
@@ -23,5 +24,16 @@ const CategorySection = styled.section`
     }
   }
 `;
+
+const CategorySection = () => {
+  return (
+    <Wrapper>
+      <ul>
+        <li className="selected">支出</li>
+        <li>收入</li>
+      </ul>
+    </Wrapper>
+  )
+}
 
 export {CategorySection}
