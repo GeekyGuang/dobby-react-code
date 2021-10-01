@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React from 'react';
+import React, {useState} from 'react';
 
 const Wrapper = styled.section`
   background: #c4c4c4;
@@ -26,11 +26,15 @@ const Wrapper = styled.section`
 `;
 
 const CategorySection = () => {
+  const [category, setCategory] = useState('-')
+
   return (
     <Wrapper>
       <ul>
-        <li className="selected">支出</li>
-        <li>收入</li>
+        <li className={category === '-' ? 'selected' : ''}
+            onClick={()=> setCategory('-')}>支出</li>
+        <li className={category === '+' ? 'selected' : ''}
+            onClick={()=> setCategory('+')}>收入</li>
       </ul>
     </Wrapper>
   )
