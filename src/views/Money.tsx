@@ -22,9 +22,11 @@ function Money() {
   })
   return (
     <MyLayout>
+      {selected.note}
       <TagsSection value={selected.tags}
                    onChange={(tags: string[]) => setSelected({...selected, tags: tags})}/>
-      <NoteSection />
+      <NoteSection value={selected.note}
+                   onChange={(note: string) => setSelected({...selected, note: note})}/>
       <CategorySection />
       <NumberPadSection />
     </MyLayout>
