@@ -5,6 +5,7 @@ import { TagsSection } from 'components/Money/TagsSection';
 import { NoteSection } from 'components/Money/NoteSection';
 import { CategorySection } from 'components/Money/CategorySection';
 import { NumberPadSection } from 'components/Money/NumberPadSection';
+import set = Reflect.set;
 
 const MyLayout = styled(Layout)`
   display: flex;
@@ -27,7 +28,8 @@ function Money() {
                    onChange={(tags: string[]) => setSelected({...selected, tags: tags})}/>
       <NoteSection value={selected.note}
                    onChange={(note: string) => setSelected({...selected, note: note})}/>
-      <CategorySection />
+      <CategorySection value={selected.category}
+                       onChange={(category: '-'|'+') => setSelected({...selected, category: category})}/>
       <NumberPadSection />
     </MyLayout>
   );
