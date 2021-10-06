@@ -11,6 +11,7 @@ import Money from './views/Money';
 import Statistics from './views/Statistics';
 import Tags from './views/Tags';
 import styled from 'styled-components';
+import {Tag} from './views/Tag';
 
 const AppWrapper = styled.div`
   color: #333;
@@ -21,8 +22,11 @@ function App() {
     <AppWrapper>
     <Router>
           <Switch>
-            <Route path="/tags">
+            <Route exact path="/tags">
               <Tags />
+            </Route>
+            <Route exact path="/tags/:tag">
+              <Tag />
             </Route>
             <Route path="/money">
               <Money />
