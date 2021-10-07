@@ -6,6 +6,7 @@ import Icon from '../components/Icon';
 import {Button} from '../components/Button';
 import styled from 'styled-components';
 import {Input} from '../components/Input';
+import { Center, Space } from 'components/Center';
 
 const TopBar = styled.header`
   display: flex;
@@ -19,6 +20,7 @@ const TopBar = styled.header`
 const InputWrapper = styled.div`
   background: #fff;
   margin-top: 8px;
+  padding: 0 16px;
   
 `
 
@@ -39,9 +41,12 @@ const Tag:React.FC = () => {
       <InputWrapper>
         <Input label="标签名" type="text" placeholder="标签名" value={tag.name} />
       </InputWrapper>
-      <div>
+      <Center>
+        <Space/>
+        <Space/>
+        <Space/>
         <Button>删除标签</Button>
-      </div>
+      </Center>
     </Layout>
   )
 }

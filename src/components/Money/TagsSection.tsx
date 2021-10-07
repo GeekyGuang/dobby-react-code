@@ -60,7 +60,7 @@ const TagsSection: React.FC<Props> = (props) => {
                              onClick={()=>{onToggleTags(tag.id)}}
                              className={selectedTagIds.indexOf(tag.id) >= 0 ? 'selected' : ''}>{tag.name}</li>)}
       </ol>
-      <button onClick={onCreateTag}>新增标签</button>
+      <button onClick={onCreateTag}>新建标签</button>
     </Wrapper>
     )
 }

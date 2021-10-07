@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import Icon from '../components/Icon';
 import {Link} from 'react-router-dom';
 import {Button} from '../components/Button';
+import {Center, Space} from '../components/Center';
 
 const TagList = styled.ul`
   font-size: 16px;
@@ -22,16 +23,7 @@ const TagList = styled.ul`
     }
   }
 `
-const ButtonWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-`
 
-const Space = styled.div`
-  height: 16px;
-`
 
 function Tags() {
   const {tags} = useTags();
@@ -45,13 +37,13 @@ function Tags() {
           </Link>
         </li>)}
       </TagList>
-      <ButtonWrapper>
+      <Center>
         <Space />
         <Space />
         <Space />
         <Button>新建标签</Button>
         <Space />
-      </ButtonWrapper>
+      </Center>
 
     </Layout>
   );
