@@ -35,7 +35,7 @@ const Tag: React.FC = () => {
   return (
     <Layout>
       <TopBar>
-        <Icon name="left"/>
+        <Icon name="left" onClick={()=> history.goBack()}/>
         <span>编辑标签</span>
         <Icon/>
       </TopBar>
