@@ -16,12 +16,21 @@ const useTags = () => {
   const deleteTag = (id:number) => {
     setTags(tags.filter(tag => tag.id !== id))
   }
+
+  const addTag =  () => {
+    const tag = window.prompt('请输入标签名')
+    if(tag !== null && tag !== '') {
+      setTags([...tags, {id: createId(), name: tag}])
+    }
+  }
+
   return {
     tags,
     findTag,
     setTags,
     updateTag,
-    deleteTag
+    deleteTag,
+    addTag
   }
 }
 
