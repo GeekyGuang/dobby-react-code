@@ -1,20 +1,41 @@
-import {useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {createId} from './lib/createId';
 
-const defaultTags = [
-  {id: createId(), name: '衣'},
-  {id: createId(), name: '食'},
-  {id: createId(), name: '住'},
-  {id: createId(), name: '行'}]
-
 const useTags = () => {
-  const [tags, setTags] = useState<{id: number, name: string}[]>(defaultTags)
-  const findTag = (id:number) => tags.filter(tag => tag.id === id)[0]
+  const [tags, setTags] = useState<{id: number, name: string}[]>([])
+  useEffect(()=>{
+    let localTags = JSON.parse(window.localStorage.getItem('tags') || '[]')
+    if(localTags.length === 0) {
+      localTags = [
+        {id: createId(), name: '衣'},
+        {id: createId(), name: '食'},
+        {id: createId(), name: '住'},
+        {id: createId(), name: '行'}]
+    }
+    setTags(localTags)
+  },[])
+
+  const count = useRef(0)
+  useEffect(()=>{
+    count.current += 1
+  })
+  useEffect(()=>{
+    if(count.current > 1) {
+      window.localStorage.setItem('tags', JSON.stringify(tags))
+    }
+  },[tags])
+  const findTag = (id:number) => {
+    return tags.filter(tag => tag.id === id)[0]}
   const updateTag = (id:number, name: string) => {
     setTags(tags.map(tag => tag.id === id ? {id, name} : tag))
   }
   const deleteTag = (id:number) => {
+    if(tags.length === 1) {
+      window.alert('请至少保留一个标签')
+      return
+    }
     setTags(tags.filter(tag => tag.id !== id))
+    return 'success'
   }
 
   const addTag =  () => {
@@ -22,12 +43,13 @@ const useTags = () => {
     if(tag !== null && tag !== '') {
       setTags([...tags, {id: createId(), name: tag}])
     }
+    console.log(tags)
   }
 
   return {
     tags,
-    findTag,
     setTags,
+    findTag,
     updateTag,
     deleteTag,
     addTag

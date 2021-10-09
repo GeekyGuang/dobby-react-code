@@ -32,6 +32,28 @@ const Tag: React.FC = () => {
   const {findTag, updateTag, deleteTag} = useTags();
   const {id} = useParams<Params>();
   const tag = findTag(parseInt(id));
+  const tagContent = (tag:{id: number, name: string}) => (
+    <>
+    <InputWrapper>
+      <Input label="标签名"
+             type="text"
+             placeholder="标签名"
+             value={tag.name}
+             onChange={(e) => updateTag(tag.id, e.target.value)}
+      />
+    </InputWrapper>
+  <Center>
+    <Space/>
+    <Space/>
+    <Space/>
+    <Button onClick={() => {
+      const result = deleteTag(tag.id);
+      if(result === 'success')
+          history.goBack();
+    }}>删除标签</Button>
+  </Center>
+      </>
+  )
   return (
     <Layout>
       <TopBar>
@@ -39,23 +61,7 @@ const Tag: React.FC = () => {
         <span>编辑标签</span>
         <Icon/>
       </TopBar>
-      <InputWrapper>
-        <Input label="标签名"
-               type="text"
-               placeholder="标签名"
-               value={tag.name}
-               onChange={(e) => updateTag(tag.id, e.target.value)}
-        />
-      </InputWrapper>
-      <Center>
-        <Space/>
-        <Space/>
-        <Space/>
-        <Button onClick={() => {
-          deleteTag(tag.id);
-          history.goBack();
-        }}>删除标签</Button>
-      </Center>
+      {tag ? tagContent(tag) : ''}
     </Layout>
   );
 };
