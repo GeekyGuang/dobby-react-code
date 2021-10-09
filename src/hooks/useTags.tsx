@@ -1,5 +1,6 @@
-import {useEffect, useRef, useState} from 'react';
-import {createId} from './lib/createId';
+import {useEffect, useState} from 'react';
+import {createId} from '../lib/createId';
+import {useUpdate} from './useUpdate';
 
 const useTags = () => {
   const [tags, setTags] = useState<{id: number, name: string}[]>([])
@@ -15,15 +16,8 @@ const useTags = () => {
     setTags(localTags)
   },[])
 
-  const count = useRef(0)
-  useEffect(()=>{
-    count.current += 1
-  })
-  useEffect(()=>{
-    if(count.current > 1) {
-      window.localStorage.setItem('tags', JSON.stringify(tags))
-    }
-  },[tags])
+  useUpdate(()=> window.localStorage.setItem('tags', JSON.stringify(tags)), [tags])
+
   const findTag = (id:number) => {
     return tags.filter(tag => tag.id === id)[0]}
   const updateTag = (id:number, name: string) => {
