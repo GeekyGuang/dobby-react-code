@@ -40,13 +40,19 @@ const useTags = () => {
     console.log(tags)
   }
 
+  const getTag = (id:number) => {
+    const tag = tags.filter(t => t.id === id)[0]
+    return tag ? tag.name : ''
+  }
+
   return {
     tags,
     setTags,
     findTag,
     updateTag,
     deleteTag,
-    addTag
+    addTag,
+    getTag
   }
 }
 
