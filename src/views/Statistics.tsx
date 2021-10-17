@@ -41,6 +41,7 @@ const dayTransform = (date: string) => {
   } else if(day(date).isSame(now.subtract(1, 'day'), 'day')){
     return '昨天'
   }
+  return date
 }
 
 function Statistics() {
@@ -58,8 +59,8 @@ function Statistics() {
 
   const hashArray = Object.entries(hash).sort((a,b) => {
     if(a[0] === b[0]) return 0;
-    if(a[0] > b[0]) return 1;
-    if(a[0] < b[0]) return -1;
+    if(a[0] > b[0]) return -1;
+    if(a[0] < b[0]) return 1;
     return 0;
   })
 
