@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import { Button } from '../components/Button'
 import { Center, Space } from '../components/Center'
 import { CategorySection } from '../components/Money/CategorySection'
+import useCategory from 'hooks/useCategory'
 
 const TagList = styled.ul`
   font-size: 16px;
@@ -42,7 +43,7 @@ const CategoryWrapper = styled.div`
 
 function Tags() {
   const { tags: alltags, addTag } = useTags()
-  const [category, setCategory] = useState<'-' | '+'>('-')
+  const { category, setCategory } = useCategory()
   const [tags, setTags] = useState<Tag[]>([])
   useEffect(() => {
     setTags(alltags.filter((i) => i.type === category))
