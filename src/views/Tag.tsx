@@ -46,7 +46,7 @@ const Tag: React.FC = () => {
           type="text"
           placeholder="标签名"
           value={tag.name}
-          onChange={(e) => updateTag(tag.id, e.target.value)}
+          onChange={(e) => updateTag(tag.id, e.target.value, '-')}
         />
       </InputWrapper>
       <Center>
