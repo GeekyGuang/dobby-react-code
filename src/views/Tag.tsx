@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import Layout from '../components/Layout'
 import { useTags } from '../hooks/useTags'
@@ -30,6 +30,17 @@ const InputWrapper = styled.div`
   padding: 0 16px;
 `
 
+const ButtonWrapper = styled.div`
+  padding-top: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+
+  button:nth-child(1) {
+    background: #ff9cab;
+  }
+`
+
 type Params = {
   id: string
 }
@@ -38,6 +49,12 @@ const Tag: React.FC = () => {
   const { findTag, updateTag, deleteTag } = useTags()
   const { id } = useParams<Params>()
   const tag = findTag(parseInt(id))
+  const [currentTag, setCurrentTag] = useState('')
+  useEffect(() => {
+    if (tag) {
+      setCurrentTag(tag.name)
+    }
+  }, [tag])
   const tagContent = (tag: { id: number; name: string }) => (
     <>
       <InputWrapper>
@@ -45,22 +62,37 @@ const Tag: React.FC = () => {
           label="标签名"
           type="text"
           placeholder="标签名"
-          value={tag.name}
-          onChange={(e) => updateTag(tag.id, e.target.value, '-')}
+          value={currentTag}
+          onChange={(e) => {
+            setCurrentTag(e.target.value)
+            console.log(currentTag)
+          }}
         />
       </InputWrapper>
       <Center>
         <Space />
         <Space />
         <Space />
-        <Button
-          onClick={() => {
-            const result = deleteTag(tag.id)
-            if (result === 'success') history.goBack()
-          }}
-        >
-          删除标签
-        </Button>
+        <ButtonWrapper>
+          <Button
+            onClick={() => {
+              const result = deleteTag(tag.id)
+              if (result === 'success') history.goBack()
+            }}
+          >
+            删除
+          </Button>
+          <Button
+            onClick={() => {
+              const result = updateTag(tag.id, currentTag)
+              if (result === 'success') {
+                window.alert('更新成功')
+              }
+            }}
+          >
+            更新
+          </Button>
+        </ButtonWrapper>
       </Center>
     </>
   )

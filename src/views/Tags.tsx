@@ -1,6 +1,6 @@
 import Layout from '../components/Layout'
-import React, { useState } from 'react'
-import { useTags } from '../hooks/useTags'
+import React, { useEffect, useState } from 'react'
+import { Tag, useTags } from '../hooks/useTags'
 import styled from 'styled-components'
 import Icon from '../components/Icon'
 import { Link } from 'react-router-dom'
@@ -41,8 +41,12 @@ const CategoryWrapper = styled.div`
 `
 
 function Tags() {
-  const { tags, addTag } = useTags()
+  const { tags: alltags, addTag } = useTags()
   const [category, setCategory] = useState<'-' | '+'>('-')
+  const [tags, setTags] = useState<Tag[]>([])
+  useEffect(() => {
+    setTags(alltags.filter((i) => i.type === category))
+  }, [alltags, category])
   return (
     <Layout>
       <CategoryWrapper>
@@ -65,7 +69,7 @@ function Tags() {
         <Space />
         <Space />
         <Space />
-        <Button onClick={() => addTag('-')}>新增标签</Button>
+        <Button onClick={() => addTag(category)}>新增标签</Button>
         <Space />
       </Center>
     </Layout>

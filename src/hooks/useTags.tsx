@@ -34,24 +34,46 @@ const useTags = () => {
   const findTag = (id: number) => {
     return tags.filter((tag) => tag.id === id)[0]
   }
-  const updateTag = (id: number, name: string, type: string) => {
-    setTags(tags.map((tag) => (tag.id === id ? { id, name, type } : tag)))
+
+  const updateTag = (id: number, name: string) => {
+    if (name.trim() === '') {
+      window.alert('标签名不可为空')
+      return
+    }
+
+    if (tags.filter((i) => i.name === name && i.id !== id).length > 0) {
+      window.alert('标签名已存在')
+      return
+    }
+
+    setTags(tags.map((tag) => (tag.id === id ? { ...tag, name } : tag)))
+    return 'success'
   }
+
   const deleteTag = (id: number) => {
     if (tags.length === 1) {
       window.alert('请至少保留一个标签')
       return
     }
-    setTags(tags.filter((tag) => tag.id !== id))
-    return 'success'
+    if (window.confirm('是否删除标签')) {
+      setTags(tags.filter((tag) => tag.id !== id))
+      return 'success'
+    }
   }
 
   const addTag = (type: string) => {
     const tag = window.prompt('请输入标签名')
+    if (tag?.trim() === '') {
+      window.alert('标签名不可为空')
+      return
+    }
     if (tag !== null && tag !== '') {
+      if (tags.filter((i) => i.type === type && i.name === tag).length > 0) {
+        window.alert('标签名已存在')
+        return
+      }
       setTags([...tags, { id: createId(), name: tag, type }])
     }
-    console.log(tags)
   }
 
   const getTag = (id: number) => {
