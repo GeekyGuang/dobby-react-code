@@ -1,13 +1,14 @@
-import Nav from './Nav';
-import React, {useEffect, useRef} from 'react';
-import styled from 'styled-components';
+import Nav from './Nav'
+import React, { useEffect, useRef } from 'react'
+import styled from 'styled-components'
 
 const Wrapper = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  max-width: 520px;
+  max-width: 500px;
   margin: 0 auto;
+  background: #fafafa;
 `
 
 const Main = styled.div`
@@ -16,18 +17,18 @@ const Main = styled.div`
 `
 
 interface Props {
-  children: React.ReactNode,
-  className?: string,
+  children: React.ReactNode
+  className?: string
   scrollTop?: number
 }
 
 const Layout = (props: Props) => {
   const mainRef = useRef<HTMLDivElement>(null)
-  useEffect(()=>{
-    setTimeout(()=>{
-      if(!mainRef.current) return;
-      mainRef.current.scrollTop = props.scrollTop!;
-    },0)
+  useEffect(() => {
+    setTimeout(() => {
+      if (!mainRef.current) return
+      mainRef.current.scrollTop = props.scrollTop!
+    }, 0)
   }, [props.scrollTop])
   return (
     <Wrapper>
@@ -40,7 +41,7 @@ const Layout = (props: Props) => {
 }
 
 Layout.defaultProps = {
-  scrollTop: 0
+  scrollTop: 0,
 }
 
 export default Layout

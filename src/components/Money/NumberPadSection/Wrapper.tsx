@@ -1,23 +1,31 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 const Wrapper = styled.section`
   > .output {
+    color: #16b6ae;
     background: #fff;
     font-size: 36px;
     line-height: 72px;
     text-align: right;
     padding: 0 16px;
     font-family: Consolas, monospace;
-    box-shadow: inset 0 -5px 5px -5px rgba(0,0,0,.25),
-                inset 0 5px 5px -5px rgba(0,0,0,.25);
+    box-shadow: inset 0 -5px 5px -5px rgba(0,0,0,.2),
+                inset 0 5px 5px -5px rgba(0,0,0,.2);
   }
   > .pad {
+    background: linear-gradient(45deg, rgba(0,210,180,1) 0%, rgba(0,191,195,1) 100%);
+
     > button {
-      font-size: 18px;
+      background: transparent;
+      font-size: 24px;
       width: 25%;
       height: 64px;
       float: left;
       border: none;
+      color: white;
+
+      border-right: 1px solid #8fe4e5;
+      border-bottom: 1px solid #8fe4e5;
       &.ok {
         float: right;
         height: 128px;
@@ -26,32 +34,14 @@ const Wrapper = styled.section`
         width: 50%;
       }
       
-      &:nth-child(1) {
-        background: #f2f2f2;
-      }
-      &:nth-child(2),&:nth-child(5){
-        background: #E0E0E0;
-      }
-      &:nth-child(3), &:nth-child(6), &:nth-child(9) {
-        background: #D3D3D3;
-      }
-      &:nth-child(4), &:nth-child(7), &:nth-child(10), &:nth-child(13) {
-        background: #C1C1C1;
-      }
-      &:nth-child(8), &:nth-child(11){
-        background: #B8B8B8;
-      }
-      &:nth-child(14) {
-        background: #A9A9A9;
-      }
-      &:nth-child(12) {
-        background: #9A9A9A;
+      &:nth-child(4),&:nth-child(8), &:nth-child(12) {
+        border-right: 0;
+        font-size: 18px;
       }
   
       &:active {
         background: #fff;
     }
   }
-`;
-
-export {Wrapper};
+`
+export { Wrapper }
