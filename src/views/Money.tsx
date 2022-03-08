@@ -38,7 +38,7 @@ const CategoryWrapper = styled.div`
 const DateTimeWrapper = styled.div`
   position: absolute;
   width: 100%;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.6);
   height: 100%;
   z-index: 1;
   .rv-picker {
