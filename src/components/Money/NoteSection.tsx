@@ -24,7 +24,7 @@ const NoteSection: React.FC<Props> = (props) => {
         label="备注"
         type="text"
         placeholder="请输入备注"
-        defaultValue={note}
+        value={note}
         onChange={onChange}
       />
     </Wrapper>
