@@ -1,4 +1,3 @@
-import { useTags } from 'hooks/useTags'
 import React, { useEffect, useRef, useState } from 'react'
 import { Dialog, Field, FieldInstance } from 'react-vant'
 interface Props {

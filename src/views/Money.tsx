@@ -36,6 +36,11 @@ const CategoryWrapper = styled.div`
 `
 
 const DateTimeWrapper = styled.div`
+  position: absolute;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  height: 100%;
+  z-index: 1;
   .rv-picker {
     position: absolute;
     bottom: 0;
@@ -130,7 +135,14 @@ function Money() {
         </CalendarWrapper>
       </NoteWrapper>
       {datePickerShow ? (
-        <DateTimeWrapper>
+        <DateTimeWrapper
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              setDatePickerShow(false)
+            }
+          }}
+          className="datetimewrapper"
+        >
           <DatetimePicker
             title="选择年月日"
             type="date"
