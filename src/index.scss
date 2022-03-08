@@ -49,3 +49,12 @@ input {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+@media (min-width: 500px) {
+  .rv-popup--top,
+  .rv-overlay {
+    width: 500px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

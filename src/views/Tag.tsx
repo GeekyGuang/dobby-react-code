@@ -7,6 +7,7 @@ import { Button } from '../components/Button'
 import styled from 'styled-components'
 import { Input } from '../components/Input'
 import { Center, Space } from 'components/Center'
+import { Dialog, Notify } from 'react-vant'
 
 const TopBar = styled.header`
   display: flex;
@@ -76,8 +77,23 @@ const Tag: React.FC = () => {
         <ButtonWrapper>
           <Button
             onClick={() => {
-              const result = deleteTag(tag.id)
-              if (result === 'success') history.goBack()
+              Dialog.confirm({
+                title: '提示',
+                message: '是否删除该标签？',
+              })
+                .then(() => {
+                  const result = deleteTag(tag.id)
+                  if (result === 'success') {
+                    history.goBack()
+                    Notify.show({
+                      type: 'success',
+                      message: '删除成功',
+                    })
+                  }
+                })
+                .catch(() => {
+                  console.log('catch')
+                })
             }}
           >
             删除
@@ -86,7 +102,7 @@ const Tag: React.FC = () => {
             onClick={() => {
               const result = updateTag(tag.id, currentTag)
               if (result === 'success') {
-                window.alert('更新成功')
+                Notify.show({ type: 'success', message: '更新成功' })
               }
             }}
           >

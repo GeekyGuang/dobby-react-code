@@ -16,6 +16,7 @@ const CategoryWrapper = styled.div`
       left: 50%;
       transform: translateX(-50%);
     }
+  }
 `
 const Item = styled.div`
   background: white;
@@ -95,7 +96,7 @@ function Statistics() {
             </span>
           </Header>
           {records.map((record) => (
-            <Item key={record.createAt}>
+            <Item key={record.createAt + record.amount}>
               <div className="tags">
                 {record.tags?.reduce(
                   (result, span, index, array) =>

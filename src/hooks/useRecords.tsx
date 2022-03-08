@@ -2,6 +2,7 @@ import { Dayjs } from 'dayjs'
 import { useEffect, useState } from 'react'
 import { useUpdate } from './useUpdate'
 import { Tag } from './useTags'
+import { Notify } from 'react-vant'
 
 export type RecordItem = {
   tags: string[]
@@ -21,11 +22,11 @@ export const useRecords = () => {
 
   const addRecord = (record: RecordItem) => {
     if (record.amount <= 0) {
-      alert('请输入金额')
+      Notify.show({ type: 'warning', message: '请输入金额' })
       return false
     }
     if (record.tags.length === 0) {
-      alert('请选择标签')
+      Notify.show({ type: 'warning', message: '请选择标签' })
       return false
     }
     const newRecord: RecordItem = JSON.parse(JSON.stringify(record))

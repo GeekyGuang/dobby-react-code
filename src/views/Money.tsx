@@ -6,7 +6,7 @@ import { NoteSection } from 'components/Money/NoteSection'
 import { CategorySection } from 'components/Money/CategorySection'
 import { NumberPadSection } from 'components/Money/NumberPadSection'
 import { useRecords, RecordItem } from '../hooks/useRecords'
-import { DatetimePicker } from 'react-vant'
+import { DatetimePicker, Notify } from 'react-vant'
 import '@vant/touch-emulator'
 import dayjs from 'dayjs'
 import Icon from 'components/Icon'
@@ -97,6 +97,7 @@ function Money() {
   const onSubmit = () => {
     if (addRecord(selected)) {
       setSelected({ ...selected, tags: [], note: '', amount: 0 })
+      Notify.show({ type: 'success', message: '保存成功' })
       return true
     }
     return false

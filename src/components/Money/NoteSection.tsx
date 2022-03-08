@@ -6,6 +6,7 @@ const Wrapper = styled.section`
   font-size: 14px;
   background: #fafafa;
   padding: 12px 16px;
+  flex-grow: 1;
 `
 
 type Props = {
