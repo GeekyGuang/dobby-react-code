@@ -82,6 +82,9 @@ function Money() {
     setDisplayDate(dayjs(pickedDate).format('YYYY/MM/DD'))
     setSelected({ ...selected, createAt: dayjs(pickedDate).format() })
   }, [pickedDate])
+  useEffect(() => {
+    setSelected({ ...selected, tags: [] })
+  }, [selected.category])
   const confirmPickedDate = (value: Date) => {
     setDatePickerShow(!datePickerShow)
     setPickedDate(dayjs(value))

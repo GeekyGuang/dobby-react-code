@@ -87,7 +87,7 @@
     "test": "node scripts/test.js",
     "deploy": "sh scripts/deploy.sh"
   },
-  "homepage": "https://traviswongx.github.io/morney-react-website/",
+  "homepage": "https://traviswongx.github.io/dobby-react/",
   "eslintConfig": {
     "extends": [
       "react-app",

@@ -10,6 +10,7 @@ import { Tag } from './views/Tag'
 
 const AppWrapper = styled.div`
   color: #333;
+  height: 100%;
 `
 
 function App() {

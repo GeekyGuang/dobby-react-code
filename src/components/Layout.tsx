@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   max-width: 500px;
