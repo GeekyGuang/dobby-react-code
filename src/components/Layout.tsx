@@ -9,6 +9,7 @@ const Wrapper = styled.div`
   max-width: 500px;
   margin: 0 auto;
   background: #fafafa;
+  position: relative;
 `
 
 const Main = styled.div`
