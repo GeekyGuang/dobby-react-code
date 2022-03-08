@@ -17,7 +17,6 @@ const CategoryWrapper = styled.div`
       transform: translateX(-50%);
     }
 `
-
 const Item = styled.div`
   background: white;
   font-size: 16px;
@@ -98,15 +97,13 @@ function Statistics() {
           {records.map((record) => (
             <Item key={record.createAt}>
               <div className="tags">
-                {record.tagIds
-                  .map((tagId) => <span key={tagId}>{getTag(tagId)}</span>)
-                  .reduce(
-                    (result, span, index, array) =>
-                      result.concat(
-                        index < array.length - 1 ? [span, ','] : [span]
-                      ),
-                    [] as ReactNode[]
-                  )}
+                {record.tags?.reduce(
+                  (result, span, index, array) =>
+                    result.concat(
+                      index < array.length - 1 ? [span, ','] : [span]
+                    ),
+                  [] as ReactNode[]
+                )}
               </div>
               <div className="note">{record.note}</div>
               <div className="amount">&yen;{record.amount}</div>

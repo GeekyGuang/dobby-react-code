@@ -39,8 +39,8 @@ const Wrapper = styled.section`
 `
 
 type Props = {
-  value: number[]
-  onChange: (tags: number[]) => void
+  value: string[]
+  onChange: (tags: string[]) => void
   type: string
 }
 
@@ -50,15 +50,15 @@ const TagsSection: React.FC<Props> = (props) => {
   useEffect(() => {
     setTags(alltags.filter((i) => i.type === props.type))
   }, [alltags, props.type])
-  const selectedTagIds = props.value
+  const selectedTags = props.value
   const onChange = props.onChange
 
-  const onToggleTags = (tagId: number) => {
-    const index = selectedTagIds.indexOf(tagId)
+  const onToggleTags = (tagName: string) => {
+    const index = selectedTags.indexOf(tagName)
     if (index >= 0) {
-      onChange(selectedTagIds.filter((t) => t !== tagId))
+      onChange(selectedTags.filter((t) => t !== tagName))
     } else {
-      onChange([...selectedTagIds, tagId])
+      onChange([...selectedTags, tagName])
     }
   }
 
@@ -69,9 +69,9 @@ const TagsSection: React.FC<Props> = (props) => {
           <li
             key={tag.id}
             onClick={() => {
-              onToggleTags(tag.id)
+              onToggleTags(tag.name)
             }}
-            className={selectedTagIds.indexOf(tag.id) >= 0 ? 'selected' : ''}
+            className={selectedTags.indexOf(tag.name) >= 0 ? 'selected' : ''}
           >
             {tag.name}
           </li>

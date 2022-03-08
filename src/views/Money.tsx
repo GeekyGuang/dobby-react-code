@@ -5,7 +5,7 @@ import { TagsSection } from 'components/Money/TagsSection'
 import { NoteSection } from 'components/Money/NoteSection'
 import { CategorySection } from 'components/Money/CategorySection'
 import { NumberPadSection } from 'components/Money/NumberPadSection'
-import { useRecords } from '../hooks/useRecords'
+import { useRecords, RecordItem } from '../hooks/useRecords'
 import { DatetimePicker } from 'react-vant'
 import '@vant/touch-emulator'
 import dayjs from 'dayjs'
@@ -16,13 +16,12 @@ const MyLayout = styled(Layout)`
   flex-direction: column;
 `
 
-type Category = '-' | '+'
-
-const defaultFormData = {
-  tagIds: [] as number[],
-  category: '-' as Category,
+const defaultFormData: RecordItem = {
+  tags: [],
+  category: '-',
   note: '',
   amount: 0,
+  createAt: dayjs().format() as string,
 }
 
 const CategoryWrapper = styled.div`
@@ -81,6 +80,7 @@ function Money() {
   const [displayDate, setDisplayDate] = useState(dayjs().format('YYYY/MM/DD'))
   useEffect(() => {
     setDisplayDate(dayjs(pickedDate).format('YYYY/MM/DD'))
+    setSelected({ ...selected, createAt: dayjs(pickedDate).format() })
   }, [pickedDate])
   const confirmPickedDate = (value: Date) => {
     setDatePickerShow(!datePickerShow)
@@ -96,7 +96,7 @@ function Money() {
 
   const onSubmit = () => {
     if (addRecord(selected)) {
-      setSelected(defaultFormData)
+      setSelected({ ...selected, tags: [], note: '', amount: 0 })
       return true
     }
     return false
@@ -111,8 +111,8 @@ function Money() {
         />
       </CategoryWrapper>
       <TagsSection
-        value={selected.tagIds}
-        onChange={(tagIds) => onChange({ tagIds })}
+        value={selected.tags}
+        onChange={(tags) => onChange({ tags })}
         type={selected.category}
       />
       <NoteWrapper>
