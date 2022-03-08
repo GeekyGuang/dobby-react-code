@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import React, { useEffect, useState } from 'react'
 import { Tag, useTags } from '../../hooks/useTags'
+import { Prompt } from '../Prompt'
 
 const Wrapper = styled.section`
   margin-top: 64px;
@@ -45,12 +46,13 @@ const Wrapper = styled.section`
 type Props = {
   value: string[]
   onChange: (tags: string[]) => void
-  type: string
+  type: '-' | '+'
 }
 
 const TagsSection: React.FC<Props> = (props) => {
   const { tags: alltags, addTag } = useTags()
   const [tags, setTags] = useState<Tag[]>([])
+  const [visible, setVisible] = useState(false)
   useEffect(() => {
     setTags(alltags.filter((i) => i.type === props.type))
   }, [alltags, props.type])
@@ -81,7 +83,13 @@ const TagsSection: React.FC<Props> = (props) => {
           </li>
         ))}
       </ol>
-      <button onClick={() => addTag(props.type)}>新增标签</button>
+      <button onClick={() => setVisible(true)}>新增标签</button>
+      <Prompt
+        visible={visible}
+        setVisible={setVisible}
+        category={props.type}
+        addTag={addTag}
+      />
     </Wrapper>
   )
 }

@@ -78,7 +78,6 @@ const Tag: React.FC = () => {
           <Button
             onClick={() => {
               Dialog.confirm({
-                title: '提示',
                 message: '是否删除该标签？',
               })
                 .then(() => {

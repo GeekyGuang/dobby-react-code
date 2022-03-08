@@ -56,8 +56,7 @@ const useTags = () => {
     return 'success'
   }
 
-  const addTag = (type: string) => {
-    const tag = window.prompt('请输入标签名')
+  const addTag = (type: '-' | '+', tag: string) => {
     if (tag?.trim() === '') {
       Notify.show({ type: 'danger', message: '标签名不可为空' })
       return
@@ -67,7 +66,10 @@ const useTags = () => {
         Notify.show({ type: 'danger', message: '标签名已存在' })
         return
       }
+      console.log(type, tag)
       setTags([...tags, { id: createId(), name: tag, type }])
+      console.log(tags)
+      Notify.show({ type: 'success', message: '创建成功' })
     }
   }
 

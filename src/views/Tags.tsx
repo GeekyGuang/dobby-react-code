@@ -8,6 +8,7 @@ import { Button } from '../components/Button'
 import { Center, Space } from '../components/Center'
 import { CategorySection } from '../components/Money/CategorySection'
 import useCategory from 'hooks/useCategory'
+import { Prompt } from 'components/Prompt'
 
 const TagList = styled.ul`
   font-size: 16px;
@@ -39,15 +40,19 @@ const CategoryWrapper = styled.div`
       left: 50%;
       transform: translateX(-50%);
     }
+  }
 `
 
 function Tags() {
   const { tags: alltags, addTag } = useTags()
   const { category, setCategory } = useCategory()
   const [tags, setTags] = useState<Tag[]>([])
+  const [visible, setVisible] = useState(false)
+
   useEffect(() => {
     setTags(alltags.filter((i) => i.type === category))
   }, [alltags, category])
+
   return (
     <Layout>
       <CategoryWrapper>
@@ -70,9 +75,15 @@ function Tags() {
         <Space />
         <Space />
         <Space />
-        <Button onClick={() => addTag(category)}>新增标签</Button>
+        <Button onClick={() => setVisible(true)}>新增标签</Button>
         <Space />
       </Center>
+      <Prompt
+        visible={visible}
+        setVisible={setVisible}
+        category={category}
+        addTag={addTag}
+      />
     </Layout>
   )
 }

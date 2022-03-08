@@ -58,3 +58,12 @@ input {
     transform: translateX(-50%);
   }
 }
+
+.rv-picker__confirm,
+.rv-dialog__confirm {
+  color: #16b6ae;
+}
+
+.rv-dialog__message {
+  font-size: 16px;
+}
